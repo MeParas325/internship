@@ -1,6 +1,8 @@
 <?php
 
 $name = "";
+$email = "";
+$mobile = "";
 
 if(isset($_POST['submit'])){
     $fp = fopen('data.csv', 'r');
@@ -8,18 +10,25 @@ if(isset($_POST['submit'])){
     $seperator = ",";
     
     while($row = fgetcsv($fp, $fs, $seperator)){
-        $name = $row[0];
-        if($name == $_POST['name']){
-            header("Location: thankyou.php");
+        $name = $_POST['name'];
+        $email = $_POST['email'] ;
+        $mobile = $_POST['mobile'];
+
+        // echo gettype($name), gettype($row[0]),"<br>";
+        // echo gettype($email), gettype($row[1]),"<br>";
+        // echo gettype($mobile), gettype($row[2]),"<br>";
+        
+        if($name == "" || $email == "" || $mobile == ""){
+            echo "enter valid information or do not leave any blank field.";
             exit;
+        }else if(trim($name) == trim($row[0]) && trim($email) == trim($row[1]) && trim($mobile) == trim($row[2])){
+            header("Location: thankyou.php");
+            echo "Values matched";
         }
     }
     echo "user is not found.";
     exit;
 }
-
-
-
 
 ?>
 

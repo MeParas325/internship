@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
     $number = $_POST['mobile'];
 
     if($name == "" || $email == "" || $number < 0){
-        echo "enter valid information do not leave any blank field.";
+        echo "enter valid information or do not leave any blank field.";
         exit;
     }
 
